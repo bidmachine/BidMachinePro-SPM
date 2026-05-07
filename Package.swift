@@ -6,18 +6,23 @@ let package = Package(
     name: "BidMachinePro",
     platforms: [.iOS(.v13)],
     products: [
-        .library(name: "BidMachinePro", targets: ["BidMachinePro", "BidMachine", "Bidon", "BidonAdapterBidMachine"])
+        .library(name: "BidMachinePro", targets: ["BidMachineProTarget"])
     ],
     targets: [
         .binaryTarget(
             name: "BidMachinePro",
-            url: "https://bidmachine-ios.s3.amazonaws.com/BidMachinePro/1.0.0-test.1/package/BidMachinePro.xcframework.zip",
-            checksum: "43c6512e1298a77416e6e76c8be36a49052e0971789d22655202f90ae6545ce6"
+            url: "https://bidmachine-ios.s3.amazonaws.com/BidMachinePro/1.0.0-test.2/package/BidMachinePro.xcframework.zip",
+            checksum: "03127c0c6f85488c1c2b195ffb341412a44f5928626c0bf65c691bcc2c0a8fc6"
         ),
         .binaryTarget(
             name: "BidMachine",
             url: "https://bidmachine-ios.s3.amazonaws.com/BidMachine/3.6.1/package/BidMachine.xcframework.zip",
             checksum: "5959c05caa4e1428e6bad192fc1d87799003faf6d9f1d376729dcc9e61de787b"
+        ),
+        .binaryTarget(
+            name: "OMSDK_Appodeal",
+            url: "https://bidmachine-ios.s3.amazonaws.com/OMSDK_Appodeal/1.6.3/package/OMSDK_Appodeal.xcframework.zip",
+            checksum: "3e3f791957a55085954608740455c6abad2d1f4381e5a4263242289030f7976f"
         ),
         .binaryTarget(
             name: "Bidon",
@@ -28,6 +33,42 @@ let package = Package(
             name: "BidonAdapterBidMachine",
             url: "https://bidon-ios.s3.eu-central-1.amazonaws.com/BidonAdapterBidMachine/3.6.1.0/BidonAdapterBidMachine.zip",
             checksum: "4873fda43d81cda5e409e8bb3279467dcf76d57bb5c1a8b2f1d3c660030c582d"
+        ),
+        .target(
+            name: "BidMachineProTarget",
+            dependencies: [
+                "BidMachinePro",
+                "BidMachine",
+                "OMSDK_Appodeal",
+                "Bidon",
+                "BidonAdapterBidMachine"
+            ],
+            path: "Sources/BidMachineProTarget",
+            sources: ["."],
+            linkerSettings: [
+                .linkedFramework("AdSupport"),
+                .linkedFramework("AVFoundation"),
+                .linkedFramework("AVKit"),
+                .linkedFramework("AudioToolbox"),
+                .linkedFramework("CFNetwork"),
+                .linkedFramework("CoreGraphics"),
+                .linkedFramework("CoreImage"),
+                .linkedFramework("CoreLocation"),
+                .linkedFramework("CoreMedia"),
+                .linkedFramework("CoreTelephony"),
+                .linkedFramework("ImageIO"),
+                .linkedFramework("QuartzCore"),
+                .linkedFramework("SafariServices"),
+                .linkedFramework("Security"),
+                .linkedFramework("StoreKit"),
+                .linkedFramework("SystemConfiguration"),
+                .linkedFramework("UIKit"),
+                .linkedFramework("WebKit"),
+                .linkedFramework("AppTrackingTransparency", .when(platforms: [.iOS])),
+                .linkedLibrary("z", .when(platforms: [.iOS])),
+                .linkedLibrary("sqlite3", .when(platforms: [.iOS])),
+                .linkedLibrary("xml2", .when(platforms: [.iOS]))
+            ]
         )
     ]
 )
