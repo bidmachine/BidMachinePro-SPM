@@ -3,16 +3,16 @@
 import PackageDescription
 
 let package = Package(
-    name: "BidMachinePro",
+    name: "BidMachinePlus",
     platforms: [.iOS(.v13)],
     products: [
-        .library(name: "BidMachinePro", targets: ["BidMachineProTarget"])
+        .library(name: "BidMachinePlus", targets: ["BidMachinePlusTarget"])
     ],
     targets: [
         .binaryTarget(
-            name: "BidMachinePro",
-            url: "https://bidmachine-ios.s3.amazonaws.com/BidMachinePro/1.0.0-test.3/package/BidMachinePro.xcframework.zip",
-            checksum: "f7d644e137072eca3834a69a620dc37d5cbade98200477a0f0b8cb5896b901bf"
+            name: "BidMachinePlus",
+            url: "https://bidmachine-ios.s3.amazonaws.com/BidMachinePlus/1.0.0-test.4/package/BidMachinePlus.xcframework.zip",
+            checksum: "02e42dcc791aa68f0fb8806ce6ac9fb9e14a0c71fe352ad74b065ff3732371c4"
         ),
         .binaryTarget(
             name: "BidMachine",
@@ -31,19 +31,19 @@ let package = Package(
         ),
         .binaryTarget(
             name: "BidonAdapterBidMachine",
-            url: "https://bidon-ios.s3.eu-central-1.amazonaws.com/BidonAdapterBidMachine/3.6.1.0/BidonAdapterBidMachine.zip",
-            checksum: "4873fda43d81cda5e409e8bb3279467dcf76d57bb5c1a8b2f1d3c660030c582d"
+            url: "https://bidon-ios.s3.eu-central-1.amazonaws.com/BidonAdapterBidMachine/3.6.1.1/BidonAdapterBidMachine.zip",
+            checksum: "1a511b23ff834ee57b8e214febbfd4d2b2ba4418bf2dac1a4eb3a584b2a24865"
         ),
         .target(
-            name: "BidMachineProTarget",
+            name: "BidMachinePlusTarget",
             dependencies: [
-                "BidMachinePro",
+                "BidMachinePlus",
                 "BidMachine",
                 "OMSDK_Appodeal",
                 "Bidon",
                 "BidonAdapterBidMachine"
             ],
-            path: "Sources/BidMachineProTarget",
+            path: "Sources/BidMachinePlusTarget",
             sources: ["."],
             linkerSettings: [
                 .linkedFramework("AdSupport"),
